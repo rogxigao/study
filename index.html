@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#faf9f6">
+<title>课程精读</title>
+
+<meta name="description" content="三门课的交互式精读站点：高等数学、离散数学、计算机科学概论。逐章整理、公式渲染、可离线阅读。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="课程精读">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="课程精读">
+<meta property="og:description" content="高等数学、离散数学、计算机科学概论，三门课的逐章精读。">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2324483e'/%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23ffffff' text-anchor='middle'%3E%E8%AF%BB%3C/text%3E%3C/svg%3E">
+
+<style>
+:root{
+  --bg:#FAF9F6; --surface:#FFFFFF; --surface-2:#F4F1EA;
+  --ink:#17181A; --ink-2:#4B4D52; --ink-3:#8B8C90;
+  --line:#E6E1D6; --accent:#24483E; --accent-soft:#E4EDE9;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#141416; --surface:#1C1D20; --surface-2:#232428;
+    --ink:#EDEBE6; --ink-2:#B4B2AC; --ink-3:#82807B;
+    --line:#2E2F33; --accent:#8FBFB0; --accent-soft:#1F2E2A;
+  }
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:900px;margin:0 auto;padding:72px 24px 80px;}
+
+h1.kicker{
+  margin:0 0 20px;font-size:11px;letter-spacing:.26em;
+  color:var(--accent);font-weight:600;font-family:var(--sans);
+}
+.rule{height:1px;background:var(--line);margin:0 0 34px;}
+
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));}
+.card{
+  position:relative;display:flex;flex-direction:column;
+  padding:24px 24px 18px;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  text-decoration:none;color:inherit;
+  transition:transform .35s var(--ease),border-color .25s ease,box-shadow .35s var(--ease);
+}
+.card:hover{
+  transform:translateY(-3px);
+  border-color:var(--accent);
+  box-shadow:0 14px 30px -18px rgba(20,18,12,.35);
+}
+.card:active{transform:translateY(-1px);}
+.cat{margin:0 0 10px;font-size:10.5px;letter-spacing:.18em;color:var(--accent);font-weight:600;}
+.card h2{font-family:var(--serif);font-size:21px;line-height:1.35;margin:0 0 10px;font-weight:600;}
+.card h2 small{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.04em;color:var(--ink-3);font-weight:400;margin-top:5px;}
+.desc{margin:0 0 18px;font-size:13.5px;line-height:1.7;color:var(--ink-2);flex:1;}
+.foot{
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:11.5px;color:var(--ink-3);
+  padding-top:14px;border-top:1px solid var(--line);
+}
+.arrow{font-size:14px;color:var(--accent);transition:transform .3s var(--ease);}
+.card:hover .arrow{transform:translate(2px,-2px);}
+
+footer{
+  margin-top:56px;padding-top:22px;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;gap:10px 22px;
+  font-size:12px;color:var(--ink-3);
+}
+footer a{color:var(--ink-3);text-decoration:none;border-bottom:1px solid var(--line);}
+footer a:hover{color:var(--accent);border-color:var(--accent);}
+
+@media (max-width:560px){
+  .wrap{padding:48px 18px 64px;}
+  .grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1 class="kicker">STUDY · 课程精读</h1>
+    <div class="rule"></div>
+  </header>
+
+  <main class="grid">
+
+    <a class="card" href="./math/">
+      <p class="cat">数学 · 上册</p>
+      <h2>高等数学<small>经管类 · 郭军 / 房少梅</small></h2>
+      <p class="desc">极限、导数与微分、中值定理、不定积分、定积分、级数。公式用 KaTeX 排版，每节配直观图示与例题拆解，侧栏可搜索章节和公式。</p>
+      <div class="foot"><span>逐章 · 交互式 · 自测</span><span class="arrow">↗</span></div>
+    </a>
+
+    <a class="card" href="./discrete/">
+      <p class="cat">数学 · 离散</p>
+      <h2>离散数学<small>逐章精读</small></h2>
+      <p class="desc">命题逻辑、谓词逻辑、集合与关系、函数、图论基础、树与组合计数。整站打包成一个文件，断网也能看，适合考前通读。</p>
+      <div class="foot"><span>单文件 · 无依赖</span><span class="arrow">↗</span></div>
+    </a>
+
+    <a class="card" href="./cs/">
+      <p class="cat">计算机</p>
+      <h2>计算机科学概论<small>Computer Science: An Overview</small></h2>
+      <p class="desc">按章精读，中英对照。从数据表示、操作系统、算法、网络到数据库与人工智能，把整本书的骨架拉直，术语保留英文原词。</p>
+      <div class="foot"><span>双语 · 全书脉络</span><span class="arrow">↗</span></div>
+    </a>
+
+  </main>
+
+  <footer>
+    <span>课程精读</span>
+    <a href="https://gahaga.eu.cc/">gahaga.eu.cc</a>
+  </footer>
+
+</div>
+</body>
+</html>
