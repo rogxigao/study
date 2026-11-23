@@ -1,0 +1,7 @@
+# 站点仓库：只放站点文件，排除本地工具产生的临时目录
+.workbuddy/
+outputs/
+Thumbs.db
+desktop.ini
+.DS_Store
+*.lnk
