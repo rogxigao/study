@@ -790,8 +790,8 @@ function buildPager(sid, ch){
   var prev = i>0 ? ORDER[i-1] : null;
   var next = i<ORDER.length-1 ? ORDER[i+1] : null;
   var h = '';
-  h += prev ? '<a class="pg" data-go="'+prev.sid+'"><span>← PREVIOUS</span><b>'+prev.sid+' '+prev.t+'</b></a>' : '<div class="pg empty"></div>';
-  h += next ? '<a class="pg next" data-go="'+next.sid+'"><span>NEXT →</span><b>'+next.sid+' '+next.t+'</b></a>' : '<div class="pg empty"></div>';
+  h += prev ? '<a class="pg" data-go="s/'+prev.sid+'"><span>← PREVIOUS</span><b>'+prev.sid+' '+prev.t+'</b></a>' : '<div class="pg empty"></div>';
+  h += next ? '<a class="pg next" data-go="s/'+next.sid+'"><span>NEXT →</span><b>'+next.sid+' '+next.t+'</b></a>' : '<div class="pg empty"></div>';
   byId('pager').innerHTML = h;
 }
 
@@ -826,7 +826,7 @@ function goMap(push){
     var c = CH[n];
     var done = c.sections.filter(function(s){return ST.sec[s.id]===2;}).length;
     var pct = Math.round(done/c.sections.length*100);
-    h += '<div class="mapcard" data-go="'+c.sections[0].id+'">'+
+    h += '<div class="mapcard" data-go="s/'+c.sections[0].id+'">'+
       '<div class="no">CHAPTER '+pad(n)+'</div>'+
       '<h3>'+c.en+'</h3><div class="zh">'+c.zh+' · '+c.sections.length+' 节</div>'+
       '<p>'+c.card+'</p>'+
@@ -848,7 +848,7 @@ function goMap(push){
     var fn = FIG[el.getAttribute('data-fig')];
     if(fn) el.innerHTML = fn();
   });
-  byId('pager').innerHTML = '<div class="pg empty"></div><a class="pg next" data-go="'+ORDER[0].sid+'"><span>START →</span><b>'+ORDER[0].sid+' '+ORDER[0].t+'</b></a>';
+  byId('pager').innerHTML = '<div class="pg empty"></div><a class="pg next" data-go="s/'+ORDER[0].sid+'"><span>START →</span><b>'+ORDER[0].sid+' '+ORDER[0].t+'</b></a>';
   buildTree();
   try{ if(push!==false) history.replaceState(null,'','#/map'); }catch(err){}
   window.scrollTo(0,0);
@@ -1142,7 +1142,12 @@ function palChoose(i){
 document.addEventListener('click', function(e){
   var t = e.target;
   var goEl = t.closest('[data-go]');
-  if(goEl){ var g = goEl.getAttribute('data-go'); location.hash = '#/'+g; return; }
+  if(goEl){
+    e.preventDefault();
+    var g = goEl.getAttribute('data-go');
+    if(g.indexOf('/')<0 && secById(g)) g = 's/'+g;
+    location.hash = '#/'+g; return;
+  }
   var sec = t.closest('[data-sec]');
   if(sec){ location.hash = '#/s/'+sec.getAttribute('data-sec'); return; }
   var ch = t.closest('[data-toggle]');
@@ -1308,6 +1313,7 @@ function route(){
   var h = location.hash.replace(/^#\/?/,'');
   if(!h || h==='map') return goMap(false);
   if(h.indexOf('s/')===0) return go(h.slice(2), false);
+  if(secById(h)) return go(h, false);
   if(h==='glossary') return goGloss(false);
   if(h==='exam') return goExam(false);
   if(h==='quiz') return goQuizList(false);
