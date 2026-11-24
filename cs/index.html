@@ -1608,10 +1608,11 @@ W.arch = {
     s+=T(24,31,'CPU',{size:11,mono:true,fill:'var(--accent)'});
     s+='<g data-a="control" style="cursor:pointer">'+box(30,44,104,58,'Control Unit','控制器')+'</g>';
     s+='<g data-a="alu" style="cursor:pointer">'+box(146,44,114,58,'ALU','算术/逻辑单元')+'</g>';
-    s+='<g data-a="registers" style="cursor:pointer">'+box(30,116,230,70,'Registers','')+'</g>';
-    s+=T(145,136,'PC · IR · general purpose',{size:9,anchor:'middle',fill:'var(--muted)'});
+    s+='<g data-a="registers" style="cursor:pointer"><rect x="30" y="116" width="230" height="70" rx="6" fill="var(--surface-2)" stroke="var(--line2)" stroke-width="1.4"/>'+
+      T(145,132,'Registers',{size:12.5,anchor:'middle',weight:600})+'</g>';
+    s+=T(145,146,'PC · IR · general purpose',{size:9,anchor:'middle',fill:'var(--muted)'});
     for(var i=0;i<4;i++){
-      s+='<rect x="46+i*52" y="146" width="44" height="22" rx="3" fill="var(--surface)" stroke="var(--line2)"/>'+T(68+i*52,161,'R'+i,{size:10,anchor:'middle',mono:true,fill:'var(--muted)'});
+      s+='<rect x="46+i*52" y="152" width="44" height="22" rx="3" fill="var(--surface)" stroke="var(--line2)"/>'+T(68+i*52,167,'R'+i,{size:10,anchor:'middle',mono:true,fill:'var(--muted)'});
     }
     s+=box(330,44,150,148,'Main Memory','指令 + 数据');
     for(var j=0;j<5;j++){ s+='<line x1="346" y1="86+j*18" x2="464" y2="86+j*18" stroke="var(--line)"/>'; }
